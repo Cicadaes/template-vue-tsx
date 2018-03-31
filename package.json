@@ -1,0 +1,34 @@
+{
+  "name": "template-vue-tsx",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "html-webpack-plugin": "^3.1.0",
+    "ts-loader": "^4.1.0",
+    "typescript": "^2.8.1",
+    "vue-loader": "^14.2.2",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cicadaes/template-vue-tsx.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cicadaes/template-vue-tsx/issues"
+  },
+  "homepage": "https://github.com/Cicadaes/template-vue-tsx#readme",
+  "description": ""
+}
