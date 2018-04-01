@@ -1,6 +1,7 @@
 <script lang='tsx'>
 import { CreateElement } from 'vue'
 import { Component, Prop, Vue } from 'vue-property-decorator'
+// import Count from '../store/module/count'
 // import './base.styl'
 
 @Component
@@ -24,7 +25,8 @@ export default class HelloJsxDecorator extends Vue {
   enthusiasm = this.initialEnthusiasm
 
   increment () {
-    this.enthusiasm++
+    // this.enthusiasm++
+    console.log(this.$store)
   }
   decrement () {
     if (this.enthusiasm > 1) {
