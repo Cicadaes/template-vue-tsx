@@ -2,29 +2,48 @@
   "name": "template-vue-tsx",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server"
+  },
   "dependencies": {
-    "tslint-config-standard": "^7.0.0",
     "vue": "^2.5.16"
   },
   "devDependencies": {
-    "@types/vue": "^2.0.0",
+    "babel-eslint": "^8.2.2",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-friendly-formatter": "^4.0.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-html": "^4.0.2",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
     "html-webpack-plugin": "^3.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "ts-loader": "^4.1.0",
     "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.0.0",
+    "tslint-loader": "^3.6.0",
     "typescript": "^2.8.1",
     "vue-class-component": "^6.2.0",
     "vue-loader": "^14.2.2",
     "vue-property-decorator": "^6.0.0",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^4.4.1",
-    "webpack-cli": "^2.0.13"
-  },
-  "scripts": {
-    "build": "webpack"
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1"
   },
   "repository": {
     "type": "git",

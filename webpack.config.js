@@ -1,12 +1,11 @@
-var path = require('path')
-var webpack = require('webpack')
+var { resolve } = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   entry: './src/index.ts',
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: resolve(__dirname, './dist'),
     filename: 'bundle.js'
   },
   mode: 'development',
@@ -15,7 +14,7 @@ module.exports = {
     hints: false
   },
   resolve: {
-    extensions: ['.ts', '.js', '.vue', '.json'],
+    extensions: ['.ts', '.js', '.vue', '.json', '.tsx'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     }
@@ -23,21 +22,46 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [resolve('src')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'tslint-loader'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
           loaders: {
+            ts: 'ts-loader',
+            tsx: 'babel-loader!ts-loader',
             stylus: 'vue-style-loader!css-loader!stylus-loader'
           }
         }
       },
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
         exclude: /node_modules/,
-        options: {
-          appendTsSuffixTo: [/\.vue$/]
-        }
+        use: [
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: { appendTsxSuffixTo: [/\.vue$/] }
+          }
+        ]
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: [resolve('src')]
       }
     ]
   },
@@ -54,6 +78,6 @@ module.exports = {
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   module.exports.plugins = (module.exports.plugins || []).concat({
-    
+
   })
 }
