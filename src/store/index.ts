@@ -20,6 +20,6 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {},
   modules: {
-    '/a/some': Count
+    'count': { ...Count, namespaced: true }
   }
 })

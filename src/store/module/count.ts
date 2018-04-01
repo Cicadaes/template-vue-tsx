@@ -15,14 +15,14 @@ export interface CounterGetters {
 export interface CounterMutations {
   // mutationName: mutationPayloadType
   inc: {
-    amount: number
+    enthusiasm: number
   }
 }
 
 export interface CounterActions {
   // actionName: actionPayloadType
   incAsync: {
-    amount: number
+    enthusiasm: number
     delay: number
   }
 }
@@ -39,8 +39,8 @@ export const getters: DefineGetters<CounterGetters, CounterState> = {
 }
 
 export const mutations: DefineMutations<CounterMutations, CounterState> = {
-  inc (state, { amount }) {
-    state.count += amount
+  inc (state, { enthusiasm }) {
+    state.count += enthusiasm
   }
 }
 
