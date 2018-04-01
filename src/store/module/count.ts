@@ -27,24 +27,27 @@ export interface CounterActions {
   }
 }
 
+export const namespaced: boolean = true
+
 /**
  * Implement the module
  */
-export const state: CounterState = {
+
+const state: CounterState = {
   count: 0
 }
 
-export const getters: DefineGetters<CounterGetters, CounterState> = {
+const getters: DefineGetters<CounterGetters, CounterState> = {
   half: state => state.count / 2
 }
 
-export const mutations: DefineMutations<CounterMutations, CounterState> = {
+const mutations: DefineMutations<CounterMutations, CounterState> = {
   inc (state, { enthusiasm }) {
     state.count += enthusiasm
   }
 }
 
-export const actions: DefineActions<CounterActions, CounterState, CounterMutations, CounterGetters> = {
+const actions: DefineActions<CounterActions, CounterState, CounterMutations, CounterGetters> = {
   incAsync ({ commit }, payload) {
     setTimeout(() => {
       commit('inc', payload)
