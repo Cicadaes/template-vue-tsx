@@ -1,6 +1,7 @@
 var { resolve } = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './src/index.ts',
@@ -43,7 +44,11 @@ module.exports = {
           loaders: {
             ts: 'ts-loader',
             tsx: 'babel-loader!ts-loader',
-            stylus: 'vue-style-loader!css-loader!stylus-loader'
+            // stylus: 'vue-style-loader!css-loader!stylus-loader'
+            stylus: ExtractTextPlugin.extract({
+              use: 'css-loader!stylus-loader',
+              fallback: 'vue-style-loader'
+            })
           }
         }
       },
@@ -62,6 +67,13 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src')]
+      },
+      {
+        test: /\.styl$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'css-loader',
+          use: ['css-loader', 'stylus-loader']
+        })
       }
     ]
   },
@@ -71,13 +83,15 @@ module.exports = {
       template: './static/index.tpl.ejs',
       filename: 'index.html',
       path: './dist'
-    })
+    }),
+    new ExtractTextPlugin('style.css')
   ]
 }
 
 if (process.env.NODE_ENV === 'production') {
+  module.exports.mode = 'production'
   module.exports.devtool = '#source-map'
-  module.exports.plugins = (module.exports.plugins || []).concat({
+  module.exports.plugins = (module.exports.plugins || []).concat(
 
-  })
+  )
 }

@@ -1,6 +1,7 @@
 <script lang='tsx'>
 import { CreateElement } from 'vue'
 import { Component, Prop, Vue } from 'vue-property-decorator'
+// import './base.styl'
 
 @Component
 export default class HelloJsxDecorator extends Vue {
@@ -20,7 +21,7 @@ export default class HelloJsxDecorator extends Vue {
   // propC: string | boolean
 
   // name = 'hello-jsx-component'
-  enthusiasm = this.initialEnthusiasm;
+  enthusiasm = this.initialEnthusiasm
 
   increment () {
     this.enthusiasm++
@@ -35,7 +36,7 @@ export default class HelloJsxDecorator extends Vue {
   }
   render (h: CreateElement) {
     return (
-      <div>
+      <div class='hello-jsx-bg hello-jsx'>
         <div>Hello {name}{this.exclamationMarks}</div>
         <button onClick={this.decrement}>-</button>
         <button onClick={this.increment}>+</button>
@@ -46,7 +47,8 @@ export default class HelloJsxDecorator extends Vue {
 </script>
 
 <style lang="stylus">
-.greeting {
-  background-color: rgb(51, 51, 51);
-}
+@import './base.styl'
+
+.hello-jsx
+  color rgb(256, 256, 256)
 </style>
