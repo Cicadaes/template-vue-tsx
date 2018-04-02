@@ -14,7 +14,7 @@ import HelloJsxDecoratorComponent from './component/HelloJsxDecorator.vue'
   }
 })
 export default class App extends Vue {
-  render (h: any) {
+  render (h: Function) {
     return (
       <hello-jsx-decorator-component initial-enthusiasm={5} />
     )

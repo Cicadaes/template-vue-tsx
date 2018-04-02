@@ -3,23 +3,26 @@ import { DefineGetters, DefineMutations, DefineActions, Dispatcher, Committer } 
 /**
  * Declare module types
  */
-export interface CounterState {
+export interface ICounterState {
   count: number
 }
 
-export interface CounterGetters {
+export interface ICounterGetters {
   // getterName: returnType
   half: number
 }
 
-export interface CounterMutations {
+export interface ICounterMutations {
   // mutationName: mutationPayloadType
   inc: {
+    enthusiasm: number
+  },
+  dec: {
     enthusiasm: number
   }
 }
 
-export interface CounterActions {
+export interface ICounterActions {
   // actionName: actionPayloadType
   incAsync: {
     enthusiasm: number
@@ -27,30 +30,39 @@ export interface CounterActions {
   }
 }
 
-export const namespaced: boolean = true
-
 /**
  * Implement the module
  */
 
-const state: CounterState = {
+const state: ICounterState = {
   count: 0
 }
 
-const getters: DefineGetters<CounterGetters, CounterState> = {
+const getters: DefineGetters<ICounterGetters, ICounterState> = {
   half: state => state.count / 2
 }
 
-const mutations: DefineMutations<CounterMutations, CounterState> = {
+const mutations: DefineMutations<ICounterMutations, ICounterState> = {
   inc (state, { enthusiasm }) {
     state.count += enthusiasm
+  },
+  dec (state, { enthusiasm }) {
+    state.count -= enthusiasm
   }
 }
 
-const actions: DefineActions<CounterActions, CounterState, CounterMutations, CounterGetters> = {
+const actions: DefineActions<ICounterActions, ICounterState, ICounterMutations, ICounterGetters> = {
   incAsync ({ commit }, payload) {
     setTimeout(() => {
       commit('inc', payload)
     }, payload.delay)
   }
+}
+
+export const count = {
+  namespaced: true,
+  state,
+  getters,
+  mutations,
+  actions
 }

@@ -1,9 +1,10 @@
 <script lang='tsx'>
 import { Component, Prop, Vue } from 'vue-property-decorator'
 // import { Dispatcher } from 'vuex-type-helper'
-import { State, Action, Getter } from 'vuex-class'
+import { State, Action, Getter, Mutation } from 'vuex-class'
+// import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
-// import { CounterActions } from '../store/module/count'
+// import { ICounterActions } from '../store/module/count'
 // import Store from '../store'
 // import Count from '../store/module/count'
 // import './base.styl'
@@ -15,6 +16,7 @@ export default class HelloJsxDecorator extends Vue {
   @State('count') state
   @Getter('half', { namespace }) half
   @Action('incAsync', { namespace }) incAsync
+  @Mutation('dec', { namespace }) dec
 
   @Prop() name: string
   @Prop({ type: Number }) initialEnthusiasm: number
@@ -48,12 +50,15 @@ export default class HelloJsxDecorator extends Vue {
     })
   }
   decrement () {
-    if (this.enthusiasm > 1) {
-      this.enthusiasm--
-    }
+    // if (this.enthusiasm > 1) {
+    //   this.enthusiasm--
+    // }
+    this.dec({
+      enthusiasm: 1
+    })
   }
   get exclamationMarks (): string {
-    return Array(this.enthusiasm + 1).join('!')
+    return Array(this.state.count + 1).join('!')
   }
   render (h: Function) {
     return (
