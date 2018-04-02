@@ -13,6 +13,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { count } from './module/count'
+import { cart } from './module/cart'
 /**
  * Create a store as same as the ordinary way
  */
@@ -20,6 +21,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {},
   modules: {
-    count
+    count,
+    cart
   }
 })

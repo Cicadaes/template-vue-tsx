@@ -25,7 +25,7 @@ export interface ICounterMutations {
 export interface ICounterActions {
   // actionName: actionPayloadType
   incAsync: {
-    enthusiasm: number
+    enthusiasm: number,
     delay: number
   }
 }
