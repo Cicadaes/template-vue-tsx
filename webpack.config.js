@@ -15,7 +15,7 @@ module.exports = {
     hints: false
   },
   resolve: {
-    extensions: ['.ts', '.js', '.vue', '.json', '.tsx'],
+    extensions: ['.ts', '.js', '.json', '.tsx'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     }
@@ -23,60 +23,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [resolve('src')],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
-      {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         enforce: 'pre',
         loader: 'tslint-loader'
       },
       {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            ts: 'awesome-typescript-loader',
-            tsx: 'babel-loader!awesome-typescript-loader',
-            // stylus: 'vue-style-loader!css-loader!stylus-loader'
-            stylus: ExtractTextPlugin.extract({
-              use: 'css-loader!stylus-loader',
-              fallback: 'vue-style-loader'
-            })
-          }
-        }
-      },
-      {
         test: /\.tsx?$/,
-        exclude: /node_modules|test/,
-        use: [
-          'babel-loader',
-          {
-            loader: 'awesome-typescript-loader',
-            options: {
-              // appendTsxSuffixTo: [/\.vue$/],
-              // exclude: /(?:test)/
-            }
-          }
-        ]
+        exclude: /node_modules/,
+        loader: 'awesome-typescript-loader'
       },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src')]
+        test: /\.html$/,
+        loader: 'vue-template-loader',
+        include: /src/
       },
       {
         test: /\.styl$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'css-loader',
-          use: ['css-loader', 'stylus-loader']
-        })
+        use: ExtractTextPlugin.extract(['css-loader?modules', 'stylus-loader'])
       }
     ]
   },

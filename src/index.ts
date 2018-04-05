@@ -1,9 +1,27 @@
 import Vue from 'vue'
-import App from './App.vue'
+import { Component } from 'vue-property-decorator'
+// import App from './App.vue'
 import Store from './store'
 
-new Vue({
+import HelloHtml from './component/HelloHtml'
+import * as Template from './app.html'
+
+// new Vue({
+//   store: Store,
+//   components: { App },
+//   template: '<App/>'
+// }).$mount('#app')
+
+@Template
+@Component({
   store: Store,
-  components: { App },
-  template: '<App/>'
-}).$mount('#app')
+  components: {
+    HelloHtml
+  }
+})
+class App extends Vue {
+
+}
+
+const vm = new App()
+vm.$mount('#app')
