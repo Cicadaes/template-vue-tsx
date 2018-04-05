@@ -15,7 +15,7 @@ import * as Types from '../../../../src/store/types'
 
 // console.log(Vue)
 // Vue.use(Vuex)
-Vue.use(Vuex)
+(Vue as any).use(Vuex)
 
 @suite('MUTATIONS')
 class Unit { // tslint:disable-line

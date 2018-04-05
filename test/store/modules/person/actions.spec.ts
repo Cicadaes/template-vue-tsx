@@ -10,7 +10,7 @@ import * as Vuex from 'vuex'
 
 // console.log(Vue)
 // Vue.use(Vuex)
-Vue.use(Vuex)
+(Vue as any).use(Vuex)
 
 // import own code
 import { State } from '../../../../src/store/module/person/state'
@@ -33,7 +33,7 @@ class Functional { // tslint:disable-line
 
     store.dispatch('person/inc', 4)
 
-    expect(store.state.person.age).to.be.equal(31)
+    expect((store.state as any).person.age).to.be.equal(31)
   }
 }
 

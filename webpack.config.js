@@ -42,8 +42,8 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
-            ts: 'ts-loader',
-            tsx: 'babel-loader!ts-loader',
+            ts: 'awesome-typescript-loader',
+            tsx: 'babel-loader!awesome-typescript-loader',
             // stylus: 'vue-style-loader!css-loader!stylus-loader'
             stylus: ExtractTextPlugin.extract({
               use: 'css-loader!stylus-loader',
@@ -54,12 +54,15 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|test/,
         use: [
           'babel-loader',
           {
-            loader: 'ts-loader',
-            options: { appendTsxSuffixTo: [/\.vue$/] }
+            loader: 'awesome-typescript-loader',
+            options: {
+              // appendTsxSuffixTo: [/\.vue$/],
+              // exclude: /(?:test)/
+            }
           }
         ]
       },

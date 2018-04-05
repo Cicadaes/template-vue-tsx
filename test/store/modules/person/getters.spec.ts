@@ -9,8 +9,9 @@ import * as Vue from 'vue'
 import * as Vuex from 'vuex'
 
 // console.log(Vue)
+// Property 'use' does not exist on type 'typeof "e:/Projects/Cicadaes/template-vue-tsx/node_modules/vue/types/index"'
 // Vue.use(Vuex)
-Vue.use(Vuex)
+(Vue as any).use(Vuex)
 
 // import own code
 import { State } from '../../../../src/store/module/person/state'
