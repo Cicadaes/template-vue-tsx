@@ -1,18 +1,20 @@
-import { DefineGetters, DefineMutations, DefineActions, Dispatcher, Committer } from 'vuex-type-helper'
+import { createNamespacedHelpers } from 'vuex'
+import { DefineGetters, DefineMutations, DefineActions } from 'vuex-type-helper'
+// import { createDecorator } from 'vue-class-component/lib/util'
 
 /**
  * Declare module types
  */
-export interface ICounterState {
+interface IState {
   count: number
 }
 
-export interface ICounterGetters {
+interface IGetters {
   // getterName: returnType
   half: number
 }
 
-export interface ICounterMutations {
+interface IMutations {
   // mutationName: mutationPayloadType
   inc: {
     enthusiasm: number
@@ -22,7 +24,7 @@ export interface ICounterMutations {
   }
 }
 
-export interface ICounterActions {
+interface IActions {
   // actionName: actionPayloadType
   incAsync: {
     enthusiasm: number,
@@ -34,15 +36,15 @@ export interface ICounterActions {
  * Implement the module
  */
 
-const state: ICounterState = {
+const state: IState = {
   count: 0
 }
 
-const getters: DefineGetters<ICounterGetters, ICounterState> = {
+const getters: DefineGetters<IGetters, IState> = {
   half: state => state.count / 2
 }
 
-const mutations: DefineMutations<ICounterMutations, ICounterState> = {
+const mutations: DefineMutations<IMutations, IState> = {
   inc (state, { enthusiasm }) {
     state.count += enthusiasm
   },
@@ -51,13 +53,20 @@ const mutations: DefineMutations<ICounterMutations, ICounterState> = {
   }
 }
 
-const actions: DefineActions<ICounterActions, ICounterState, ICounterMutations, ICounterGetters> = {
+const actions: DefineActions<IActions, IState, IMutations, IGetters> = {
   incAsync ({ commit }, payload) {
     setTimeout(() => {
       commit('inc', payload)
     }, payload.delay)
   }
 }
+
+export const {
+  mapState,
+  mapGetters,
+  mapMutations,
+  mapActions
+} = createNamespacedHelpers<IState, IGetters, IMutations, IActions>('count')
 
 export const count = {
   namespaced: true,

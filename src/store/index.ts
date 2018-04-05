@@ -14,6 +14,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { count } from './module/count'
 import { cart } from './module/cart'
+import { Person } from './module/person'
 /**
  * Create a store as same as the ordinary way
  */
@@ -22,6 +23,7 @@ export default new Vuex.Store({
   state: {},
   modules: {
     count,
-    cart
+    cart,
+    person: new Person()
   }
 })

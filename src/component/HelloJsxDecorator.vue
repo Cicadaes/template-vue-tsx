@@ -4,19 +4,34 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { State, Action, Getter, Mutation } from 'vuex-class'
 // import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
-// import { ICounterActions } from '../store/module/count'
+// import * as Count from '../store/module/count'
 // import Store from '../store'
 // import Count from '../store/module/count'
 // import './base.styl'
 
 const namespace: string = 'count'
 
-@Component
+@Component({
+  // computed: {
+  //   ...Count.mapState(['count']),
+  //   ...Count.mapGetters({
+  //     half: 'half'
+  //   })
+  // },
+  // methods: {
+  //   ...Count.mapMutations({
+  //     dec: 'dec'
+  //   }),
+  //   ...Count.mapActions({
+  //     incAsync: 'incAsync'
+  //   })
+  // }
+})
 export default class HelloJsxDecorator extends Vue {
-  @State('count') state
-  @Getter('half', { namespace }) half
-  @Action('incAsync', { namespace }) incAsync
-  @Mutation('dec', { namespace }) dec
+  @State('count') state: any
+  @Getter('half', { namespace }) half: any
+  @Action('incAsync', { namespace }) incAsync: any
+  @Mutation('dec', { namespace }) dec: any
 
   @Prop() name: string
   @Prop({ type: Number }) initialEnthusiasm: number
@@ -39,10 +54,10 @@ export default class HelloJsxDecorator extends Vue {
   increment () {
     // this.enthusiasm++
     /* eslint-disable */
-    // this.$store.dispatch<Dispatcher<CounterActions>> ({
-    //   type: 'incAsync',
+    // this.$store.dispatch<Dispatcher<ICounterActions>>({
+    //   type: 'count/incAsync',
     //   enthusiasm: 1,
-    //   delay: 1000
+    //   delay: 500
     // })
     this.incAsync({
       enthusiasm: 1,

@@ -1,9 +1,9 @@
 {
   "include": [
-    "src"
+    "src",
+    "test"
   ],
   "exclude": [
-		"dist",
 		"dist",
 		"node_modules"
   ],
@@ -13,11 +13,10 @@
     "jsxFactory": "h",
     "strict": true,
     "strictPropertyInitialization": false,
-    "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "allowJs": true,
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es5",
     "moduleResolution": "node",
     "isolatedModules": true,

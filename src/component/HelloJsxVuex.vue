@@ -12,10 +12,10 @@ import { State, Action, Getter, Mutation } from 'vuex-class'
 @Component
 export default class HelloJsxDecorator extends Vue {
   // @State('cart/cart') state
-  @State('cart') state
-  @Getter('cart/count') count
-  @Action('cart/inc') incAsync
-  @Mutation('cart/dec') dec
+  @State('cart') state: any
+  @Getter('cart/count') count: any
+  @Action('cart/inc') incAsync: any
+  @Mutation('cart/dec') dec: any
 
   @Prop() name: string
   @Prop({ type: Number }) initialEnthusiasm: number
