@@ -10,6 +10,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
+    "jsx": "preserve",
     "noImplicitAny": true,
     "sourceMap": false,
     "strictNullChecks": true,

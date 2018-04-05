@@ -2,9 +2,7 @@ import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 // import App from './App.vue'
 import Store from './store'
-
 import HelloHtml from './component/HelloHtml'
-import * as Template from './app.html'
 
 // new Vue({
 //   store: Store,
@@ -12,7 +10,7 @@ import * as Template from './app.html'
 //   template: '<App/>'
 // }).$mount('#app')
 
-@Template
+// https://sketchboard.io/vue-jsx-typescript-example/
 @Component({
   store: Store,
   components: {
@@ -20,7 +18,14 @@ import * as Template from './app.html'
   }
 })
 class App extends Vue {
-
+  render (h: Function) {
+    return (
+      <div>
+        Hello TSX
+        <hello-html />
+      </div>
+    )
+  }
 }
 
 const vm = new App()
