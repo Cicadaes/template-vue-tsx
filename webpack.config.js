@@ -1,7 +1,13 @@
-var { resolve } = require('path')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var CleanWebpackPlugin = require('clean-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+let { resolve } = require('path')
+let HtmlWebpackPlugin = require('html-webpack-plugin')
+let CleanWebpackPlugin = require('clean-webpack-plugin')
+let ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+const extractStylus = new ExtractTextPlugin({
+  filename: 'css/[name].[hash].css',
+  allChunks: true,
+  // disable: process.env.NODE_ENV === 'development' // inner<style>
+})
 
 module.exports = {
   entry: './src/index.tsx',
@@ -31,21 +37,54 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'awesome-typescript-loader',
-          options: {
-            useBabel: true,
+        use: [
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              useBabel: true,
+            }
           }
-        }
-      },
-      {
-        test: /\.html$/,
-        loader: 'vue-template-loader',
-        include: /src/
+      ]
       },
       {
         test: /\.styl$/,
-        use: ExtractTextPlugin.extract(['css-loader?modules', 'stylus-loader'])
+        exclude: [resolve(__dirname, 'src/style')],
+        use: ['css-hot-loader'].concat(extractStylus.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                sourceMap: false,
+                importLoaders: 2,
+                localIdentName: '[name]__[local]___[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'stylus-loader'
+            }
+          ]
+        }))
+      },
+      {
+        test: /\.styl$/,
+        include: [resolve(__dirname, 'src/style')],
+        use: ['css-hot-loader'].concat(extractStylus.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: false,
+                importLoaders: 2
+              }
+            },
+            {
+              loader: 'stylus-loader'
+            }
+          ]
+        }))
       }
     ]
   },
@@ -56,7 +95,7 @@ module.exports = {
       filename: 'index.html',
       path: './dist'
     }),
-    new ExtractTextPlugin('style.css')
+    extractStylus
   ]
 }
 

@@ -4,6 +4,8 @@ import { Component } from 'vue-property-decorator'
 import Store from './store'
 import HelloHtml from './component/HelloHtml'
 
+import './style/main.styl'
+
 // new Vue({
 //   store: Store,
 //   components: { App },
