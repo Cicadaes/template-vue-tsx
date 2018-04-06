@@ -6,6 +6,15 @@ import HelloHtml from './component/HelloHtml'
 
 import './style/main.styl'
 
+// export function init (accept: any) {
+//   accept(() => { console.log('accepted!') })
+// }
+// init((cb: Function) => {
+//   if ((module as any).hot) {
+//     (module as any).hot.accept('./component/HelloHtml', cb)
+//   }
+// })
+
 // new Vue({
 //   store: Store,
 //   components: { App },

@@ -6,7 +6,7 @@ let ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractStylus = new ExtractTextPlugin({
   filename: 'css/[name].[hash].css',
   allChunks: true,
-  // disable: process.env.NODE_ENV === 'development' // inner<style>
+  disable: process.env.NODE_ENV === 'development' // inner<style>,'css-hot-loader'
 })
 
 module.exports = {
